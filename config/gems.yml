@@ -1,3 +1,4 @@
 --- 
-- :version: 2.3.8
-  :name: rails
+- :name: nokogiri
+- :name: rails
+  :version: 2.3.8
