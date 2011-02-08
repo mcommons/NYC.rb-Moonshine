@@ -5,6 +5,9 @@ class ApplicationManifest < Moonshine::Manifest::Rails
   # for details. To customize, remove this recipe and specify the components you want.
   recipe :default_stack
 
+
+  recipe :memcached
+
   def application_packages
     package 'zip', :ensure => :installed
 
