@@ -4,6 +4,9 @@ class ApplicationManifest < Moonshine::Manifest::Rails
   # Rails, Apache, Passenger, the database from database.yml, Postfix, Cron, logrotate and NTP.
   recipe :default_stack
 
+
+
+
   # recipe :memcached
   # 
   # def application_packages
