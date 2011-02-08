@@ -10,11 +10,9 @@ class ApplicationManifest < Moonshine::Manifest::Rails
 
     cron 'dummy_task', :command => 'ls -la', :user => configuration[:user], :minute => 0, :hour => 0
 
-    random_tweet = JSON::load(Net::HTTP.get(URI.parse('http://twitter.com/statuses/public_timeline.json'))).last['text']
     farm_config = <<-CONFIG
       MOOCOWS = 3
       HORSIES = 10
-      RANDOM_TWEET = #{random_tweet}
     CONFIG
     file '/etc/farm.conf', :ensure => :present, :content => farm_config
   end
