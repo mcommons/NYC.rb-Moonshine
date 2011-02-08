@@ -6,13 +6,17 @@ class ApplicationManifest < Moonshine::Manifest::Rails
   recipe :default_stack
 
   def application_packages
-    # package 'traceroute', :ensure => :installed
-    # cron 'dummy_task', :command => 'ls -la', :user => configuration[:user], :minute => 0, :hour => 0
-    # farm_config = <<-CONFIG
-    #   MOOCOWS = 3
-    #   HORSIES = 10
-    # CONFIG
-    # file '/etc/farm.conf', :ensure => :present, :content => farm_config
+    package 'zip', :ensure => :installed
+
+    cron 'dummy_task', :command => 'ls -la', :user => configuration[:user], :minute => 0, :hour => 0
+
+    random_tweet = JSON::load(Net::HTTP.get(URI.parse('http://twitter.com/statuses/public_timeline.json'))).last['text']
+    farm_config = <<-CONFIG
+      MOOCOWS = 3
+      HORSIES = 10
+      RANDOM_TWEET = #{random_tweet}
+    CONFIG
+    file '/etc/farm.conf', :ensure => :present, :content => farm_config
   end
   recipe :application_packages
   
